@@ -1,202 +1,88 @@
-@charset "UTF-8";
-
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-
 @import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
+@tailwind utilities;
 
-::-webkit-scrollbar {
-  @apply w-3 h-3;
-}
-::-webkit-scrollbar-track {
-  @apply bg-primary-light-1 dark:bg-primary-dark-1;
-}
-::-webkit-scrollbar-thumb {
-  @apply bg-body-light-9 dark:bg-body-dark-9 border-2 border-solid border-primary-light-1 dark:border-primary-dark-1 rounded;
-}
-::-webkit-scrollbar-corner {
-  @apply bg-transparent;
-}
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #0a0a0a;
 
-*,
-*::before,
-*::after {
-  @apply transition-all duration-[400ms];
-}
+    --card: #ffffff;
+    --card-foreground: #0a0a0a;
 
-html {
-  @apply scroll-smooth;
-  color-scheme: light;
-  font-family: "Inter", sans-serif;
-}
+    --popover: #ffffff;
+    --popover-foreground: #0a0a0a;
 
-[data-web-theme="dark"] {
-  color-scheme: dark;
-}
+    --primary: var(--color-mosque-700);
+    --primary-foreground: var(--color-mosque-50);
 
-body {
-  @apply text-[14px]/normal font-sans bg-primary-light-1 dark:bg-primary-dark-1 lg:text-base;
-}
+    --secondary: var(--color-mosque-100);
+    --secondary-foreground: var(--color-mosque-900);
 
-[tabindex] {
-  @apply outline-none;
-}
+    --muted: var(--color-mosque-100);
+    --muted-foreground: var(--color-mosque-600);
 
-img {
-  @apply max-w-full;
-}
+    --accent: var(--color-mosque-200);
+    --accent-foreground: var(--color-mosque-800);
 
-a {
-  @apply text-balance break-words text-primary-light-11 hover:text-primary-light-10 dark:text-primary-dark-11 dark:hover:text-primary-dark-10 no-underline;
-}
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
 
-a,
-button {
-  @apply cursor-pointer;
-}
+    --border: var(--color-mosque-200);
+    --input: var(--color-mosque-200);
+    --ring: var(--color-mosque-700);
 
-button,
-input,
-select,
-textarea {
-  @apply bg-inherit text-inherit border-0 outline-none;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
+    --radius: 0.5rem;
 
-ul,
-ol {
-  @apply list-none;
-}
-
-strong {
-  @apply font-bold text-body-light-12 dark:text-body-dark-12;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply text-pretty text-body-light-12 dark:text-body-dark-12 m-0 font-bold;
-}
-
-h1 {@apply text-5xl/tight;}
-h2 {@apply text-4xl/tight;}
-h3 {@apply text-3xl/tight;}
-h4 {@apply text-2xl/tight;}
-h5 {@apply text-xl/tight;}
-h6 {@apply text-sm/tight;}
-
-p {
-  @apply text-[1em]/normal m-0;
-}
-
-p + p {
-  @apply mt-5;
-}
-
-.disabled,
-:disabled {
-  @apply !opacity-60 !pointer-events-none !select-none;
-}
-
-.page-loading {
-  background-image: radial-gradient(
-    circle at top right,
-    rgba(61, 99, 221, 0.1) 0%,
-    rgba(61, 99, 221, 0.1) 28%,
-    rgba(61, 99, 221, 0.075) 28%,
-    rgba(61, 99, 221, 0.075) 45%,
-    rgba(61, 99, 221, 0.05) 45%,
-    rgba(61, 99, 221, 0.05) 63%,
-    rgba(61, 99, 221, 0.025) 63%,
-    rgba(61, 99, 221, 0.025) 100%
-  );
-}
-
-.page-loading.hide {
-  @apply opacity-0 invisible pointer-events-none;
-}
-
-.grid-loader,
-.grid-loader div {
-  @apply box-border;
-}
-
-.grid-loader {
-  @apply inline-block relative w-[80px] h-[80px];
-}
-
-.grid-loader div {
-  @apply absolute w-4 h-4 rounded-full bg-primary;
-  animation: grid-loader 1.2s linear infinite;
-}
-
-.grid-loader div:nth-child(1) {@apply top-2 left-2; animation-delay: 0s;}
-.grid-loader div:nth-child(2) {@apply top-2 left-8; animation-delay: -0.4s;}
-.grid-loader div:nth-child(3) {@apply top-2 left-14; animation-delay: -0.8s;}
-.grid-loader div:nth-child(4) {@apply top-8 left-2; animation-delay: -0.4s;}
-.grid-loader div:nth-child(5) {@apply top-8 left-8; animation-delay: -0.8s;}
-.grid-loader div:nth-child(6) {@apply top-8 left-14; animation-delay: -1.2s;}
-.grid-loader div:nth-child(7) {@apply top-14 left-2; animation-delay: -0.8s;}
-.grid-loader div:nth-child(8) {@apply top-14 left-8; animation-delay: -1.2s;}
-.grid-loader div:nth-child(9) {@apply top-14 left-14; animation-delay: -1.6s;}
-
-@keyframes grid-loader {
-  0%, 100% {@apply opacity-100;}
-  50% {@apply opacity-50;}
-}
-
-  .ic-navbar.sticky {
-    @apply fixed z-[9999] shadow-md backdrop-blur bg-primary-light-1/75 dark:bg-primary-dark-1/70 border-b border-alpha-light dark:border-alpha-dark;
+    /* Mosque color palette */
+    --color-mosque-50: #effefd;
+    --color-mosque-100: #c8fffa;
+    --color-mosque-200: #92fdf6;
+    --color-mosque-300: #53f5f0;
+    --color-mosque-400: #20e1e1;
+    --color-mosque-500: #07c2c5;
+    --color-mosque-600: #02999f;
+    --color-mosque-700: #07787e;
+    --color-mosque-800: #0c686e;
+    --color-mosque-900: #0e4f53;
+    --color-mosque-950: #012d32;
   }
 
-  .ic-page-scroll.active,
-  .ic-navbar.sticky .ic-page-scroll.active {
-    @apply text-primary opacity-100;
-  }
+  .dark {
+    --background: var(--color-mosque-950);
+    --foreground: var(--color-mosque-100);
 
-  #home,
-  #call-action {
-    background-image: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 28%, rgba(255, 255, 255, 0.075) 28%, rgba(255, 255, 255, 0.075) 45%, rgba(255, 255, 255, 0.05) 45%, rgba(255, 255, 255, 0.05) 63%, rgba(255, 255, 255, 0.025) 63%, rgba(255, 255, 255, 0.025) 100%);
-  }
+    --card: var(--color-mosque-900);
+    --card-foreground: var(--color-mosque-50);
 
-  .section-area {
-    @apply relative py-24 text-body-light-11 dark:text-body-dark-11;
-  }
-  .section-area:nth-child(odd) {
-    @apply bg-body-striped-light dark:bg-body-striped-dark;
-  }
+    --popover: var(--color-mosque-900);
+    --popover-foreground: var(--color-mosque-50);
 
-  .common-carousel .swiper-button-prev,
-  .common-carousel .swiper-button-next {
-    @apply static m-0 h-12 w-12 rounded-lg text-[22px] bg-body-light-1 dark:bg-body-dark-12/10 text-body-light-12 dark:text-body-dark-12 shadow-lg hover:bg-primary hover:text-primary-color focus:bg-primary focus:text-primary-color;
-  }
+    --primary: var(--color-mosque-300);
+    --primary-foreground: var(--color-mosque-950);
 
-@layer utilities {
-  .row {
-    @apply flex flex-wrap justify-center -mt-8 -mx-3;
+    --secondary: var(--color-mosque-700);
+    --secondary-foreground: var(--color-mosque-100);
+
+    --muted: var(--color-mosque-800);
+    --muted-foreground: var(--color-mosque-200);
+
+    --accent: var(--color-mosque-600);
+    --accent-foreground: var(--color-mosque-100);
+
+    --destructive: #7f1d1d;
+    --destructive-foreground: #fef2f2;
+
+    --border: var(--color-mosque-800);
+    --input: var(--color-mosque-800);
+    --ring: var(--color-mosque-300);
   }
-  .row > * {
-    @apply w-full max-w-full px-3 mt-8;
+}
+
+@layer base {
+  * {
+    @apply border-border;
   }
-  .col {
-    @apply grow shrink basis-0;
+  body {
+    @apply bg-background text-foreground;
   }
-  .col-auto { @apply w-auto; }
-  .col-1 { @apply w-1/12; }
-  .col-2 { @apply w-1/6; }
-  .col-3 { @apply w-1/4; }
-  .col-4 { @apply w-1/3; }
-  .col-5 { @apply w-5/12; }
-  .col-6 { @apply w-1/2; }
-  .col-7 { @apply w-7/12; }
-  .col-8 { @apply w-2/3; }
-  .col-9 { @apply w-3/4; }
-  .col-10 { @apply w-10/12; }
-  .col-11 { @apply w-11/12; }
-  .col-12 { @apply w-full; }
 }
